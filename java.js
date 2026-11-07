@@ -53,9 +53,25 @@ function moverFundo(delta) {
     });
 }
 
+// som do voar
+const somVoar = new Audio("stomp.mp3");
+
+somVoar.volume = 0.4;
+
+function voar() {
+    somVoar.currentTime = 0;
+    somVoar.play();
+}
+
 // VOAR
 function voar() {
     if (ativo) velocidade = IMPULSO;
+    document.addEventListener("keydown", function(event) {
+    if (event.code === "Space") {
+        somVoar.currentTime = 0;
+        somVoar.play();
+    }
+});
 }
 
 // TECLADO
@@ -86,6 +102,16 @@ function criarLivro() {
     baixo.className = "livro";
     baixo.style.height = (400 - altura - 180) + "px";
     baixo.style.bottom = "0";
+
+    // ADICIONAR IMAGEM DOS LIVROS
+    cima.style.backgroundImage = "url('livro.png')";
+    baixo.style.backgroundImage = "url('livro.png')";
+
+    cima.style.backgroundSize = "100% 100%";
+    baixo.style.backgroundSize = "100% 100%";
+
+    cima.style.backgroundRepeat = "no-repeat";
+    baixo.style.backgroundRepeat = "no-repeat";
 
     mundo.appendChild(cima);
     mundo.appendChild(baixo);
